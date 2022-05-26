@@ -70,6 +70,7 @@ def manually_fill():
                          NAME VARCHAR(50) NOT NULL,
                          DATE VARCHAR(20) NOT NULL,
                          TIME VARCHAR(20) NOT NULL,
+                         STANDARD INT NOT NULL,
                              PRIMARY KEY (ID)
                              );
                         """
@@ -119,7 +120,7 @@ def manually_fill():
             STU_NAME = tk.Label(MFW, text="Enter Student name", width=15, height=2, fg="white", bg="blue2",
                                 font=('times', 15, ' bold '))
             STU_NAME.place(x=30, y=200)
-
+            
             global ENR_ENTRY
             ENR_ENTRY = tk.Entry(MFW, width=20,validate='key', bg="yellow", fg="red", font=('times', 23, ' bold '))
             ENR_ENTRY['validatecommand'] = (ENR_ENTRY.register(testVal), '%P', '%d')
@@ -133,11 +134,14 @@ def manually_fill():
 
             def remove_student():
                 STUDENT_ENTRY.delete(first=0, last=22)
+            
+
 
             ####get important variable
             def enter_data_DB():
                 ENROLLMENT = ENR_ENTRY.get()
                 STUDENT = STUDENT_ENTRY.get()
+                
                 if ENROLLMENT=='':
                     err_screen1()
                 elif STUDENT=='':
@@ -322,7 +326,7 @@ def subjectchoose():
     def Fillattendances():
         sub=tx.get()
         now = time.time()  ###For calculate seconds of video
-        future = now + 20
+        future = now + 600
         if time.time() < future:
             if sub == '':
                 err_screen1()
@@ -623,7 +627,7 @@ def on_closing():
         window.destroy()
 window.protocol("WM_DELETE_WINDOW", on_closing)
 
-message = tk.Label(window, text="Face-Recognition-Based-Attendance-Management-System", bg="cyan", fg="black", width=50,
+message = tk.Label(window, text="Face-Recognition-Based-Attendance-Management-System", bg="red", fg="white", width=50,
                    height=3, font=('times', 30, 'italic bold '))
 
 message.place(x=80, y=20)
@@ -631,7 +635,7 @@ message.place(x=80, y=20)
 Notification = tk.Label(window, text="All things good", bg="Green", fg="white", width=15,
                       height=3, font=('times', 17, 'bold'))
 
-lbl = tk.Label(window, text="Enter Enrollment", width=20, height=2, fg="black", bg="deep pink", font=('times', 15, ' italic '))
+lbl = tk.Label(window, text="Enter Enrollment", width=20, height=2, fg="black", bg="cyan", font=('times', 15, ' italic '))
 lbl.place(x=200, y=200)
 
 def testVal(inStr,acttyp):
@@ -644,31 +648,31 @@ txt = tk.Entry(window, validate="key", width=20, bg="yellow", fg="red", font=('t
 txt['validatecommand'] = (txt.register(testVal),'%P','%d')
 txt.place(x=550, y=210)
 
-lbl2 = tk.Label(window, text="Enter Name", width=20, fg="black", bg="deep pink", height=2, font=('times', 15, ' italic '))
+lbl2 = tk.Label(window, text="Enter Name", width=20, fg="black", bg="cyan", height=2, font=('times', 15, ' italic '))
 lbl2.place(x=200, y=300)
 
 txt2 = tk.Entry(window, width=20, bg="yellow", fg="red", font=('times', 25, ' bold '))
 txt2.place(x=550, y=310)
 
-clearButton = tk.Button(window, text="Clear",command=clear,fg="black"  ,bg="deep pink"  ,width=10  ,height=1 ,activebackground = "Red" ,font=('times', 15, 'italic'))
+clearButton = tk.Button(window, text="Clear",command=clear,fg="black"  ,bg="magenta"  ,width=10  ,height=1 ,activebackground = "Red" ,font=('times', 15, 'italic'))
 clearButton.place(x=950, y=210)
 
-clearButton1 = tk.Button(window, text="Clear",command=clear1,fg="black"  ,bg="deep pink"  ,width=10 ,height=1, activebackground = "Red" ,font=('times', 15, ' italic '))
+clearButton1 = tk.Button(window, text="Clear",command=clear1,fg="black"  ,bg="magenta"  ,width=10 ,height=1, activebackground = "Red" ,font=('times', 15, ' italic '))
 clearButton1.place(x=950, y=310)
 
-AP = tk.Button(window, text="Check Register students",command=admin_panel,fg="black"  ,bg="cyan"  ,width=19 ,height=1, activebackground = "Red" ,font=('times', 15, ' italic '))
+AP = tk.Button(window, text="Check Register students",command=admin_panel,fg="white"  ,bg="black"  ,width=19 ,height=1, activebackground = "Red" ,font=('times', 15, ' italic '))
 AP.place(x=990, y=410)
 
-takeImg = tk.Button(window, text="Take Images",command=take_img,fg="white"  ,bg="blue2"  ,width=20  ,height=3, activebackground = "Red" ,font=('times', 15, ' italic '))
+takeImg = tk.Button(window, text="Take Images",command=take_img,fg="white"  ,bg="green"  ,width=20  ,height=3, activebackground = "Red" ,font=('times', 15, ' italic '))
 takeImg.place(x=90, y=500)
 
-trainImg = tk.Button(window, text="Train Images",fg="black",command=trainimg ,bg="lawn green"  ,width=20  ,height=3, activebackground = "Red" ,font=('times', 15, ' italic '))
+trainImg = tk.Button(window, text="Train Images",fg="black",command=trainimg ,bg="yellow"  ,width=20  ,height=3, activebackground = "Red" ,font=('times', 15, ' italic '))
 trainImg.place(x=390, y=500)
 
-FA = tk.Button(window, text="Automatic Attendace",fg="white",command=subjectchoose  ,bg="blue2"  ,width=20  ,height=3, activebackground = "Red" ,font=('times', 15, ' italic '))
+FA = tk.Button(window, text="Automatic Attendace",fg="white",command=subjectchoose  ,bg="deep pink"  ,width=20  ,height=3, activebackground = "Red" ,font=('times', 15, ' italic '))
 FA.place(x=690, y=500)
 
-quitWindow = tk.Button(window, text="Manually Fill Attendance", command=manually_fill  ,fg="black"  ,bg="lawn green"  ,width=20  ,height=3, activebackground = "Red" ,font=('times', 15, ' italic '))
+quitWindow = tk.Button(window, text="Manually Fill Attendance", command=manually_fill  ,fg="white"  ,bg="green"  ,width=20  ,height=3, activebackground = "Red" ,font=('times', 15, ' italic '))
 quitWindow.place(x=990, y=500)
 
 window.mainloop()
